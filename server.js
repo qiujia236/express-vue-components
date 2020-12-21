@@ -166,7 +166,7 @@ app.get('/merge', (req, res) => {
 app.use(express.static('./'));
 app.use((req, res) => {
     res.status(404);
-    res.send('NOT FOUND!');
+    res.send('NOT FOUND other API!');
 });
 
 
