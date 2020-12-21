@@ -4,7 +4,9 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     fs = require('fs'),
     SparkMD5 = require('spark-md5'),
-    PORT = process.env.PORT || 8888;
+    PORT = process.env.PORT || 8888,
+    // url = `127.0.0.1`;
+    url = `https://express-vue-components.herokuapp.com`;
 
 //设置跨域访问
 app.all('*', function (req, res, next) {
@@ -65,7 +67,7 @@ app.post('/single1', async (req, res) => {
     res.send({
         code: 0,
         originalFilename: file.originalFilename,
-        path: file.path.replace(__dirname, `http://127.0.0.1:${PORT}`)
+        path: file.path.replace(__dirname, `${url}:${PORT}`)
     });
 });
 
@@ -91,7 +93,7 @@ app.post('/single2', (req, res) => {
     res.send({
         code: 0,
         originalFilename: filename,
-        path: path.replace(__dirname, `http://127.0.0.1:${PORT}`)
+        path: path.replace(__dirname, `${url}:${PORT}`)
     });
 });
 
@@ -113,7 +115,7 @@ app.post('/single3', async (req, res) => {
         if (!err) {
             res.send({
                 code: 0,
-                path: path.replace(__dirname, `http://127.0.0.1:${PORT}`)
+                path: path.replace(__dirname, `${url}:${PORT}`)
             });
             return;
         }
@@ -133,7 +135,7 @@ app.post('/single3', async (req, res) => {
             fs.unlinkSync(chunk.path);
             res.send({
                 code: 0,
-                path: path.replace(__dirname, `http://127.0.0.1:${PORT}`)
+                path: path.replace(__dirname, `${url}:${PORT}`)
             });
         });
     });
@@ -157,7 +159,7 @@ app.get('/merge', (req, res) => {
 
     res.send({
         code: 0,
-        path: `http://127.0.0.1:${PORT}/upload/${hash}.${suffix}`
+        path: `${url}:${PORT}/upload/${hash}.${suffix}`
     });
 });
 
